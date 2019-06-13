@@ -1,15 +1,14 @@
 
 class Board{
     constructor (width, height){
-        this.width = width;
-        this.height = height;
+        this.props = {width, height};
     };
 
     /**
      * check if robot position is valid
      */
     isValidPosition(pos){
-        return pos.x >=0 && pos.y >= 0 && pos.x < this.width && pos.y < this.height; 
+        return pos.x >=0 && pos.y >= 0 && pos.x < this.props.width && pos.y < this.props.height; 
     }
 
     /**

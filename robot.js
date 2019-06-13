@@ -2,7 +2,9 @@ const COMMANDS = ['place', 'move', 'left', 'right', 'report'];
 const COMPASS = {'NORTH': 90, 'EAST': 0, 'SOUTH': -90, 'WEST': -180};
 
 class Robot {
-    constructor(board){
+
+    constructor(board, logger){
+        this.logger = logger;
         this.props = {
             position: {
                 x: 0,
@@ -24,23 +26,23 @@ class Robot {
      */
     place(args){
         if (!args){
-            console.log('missing parameters');
+            this.logger.log('Missing Parameters');
             return;
         }
         let [x,y,facing] = args.split(",");
         if (!x || !y || !facing){
-            console.log('invalid parameters')
+            this.logger.log('Invalid Parameters')
             return;
         }
         x = parseInt(x);
         y = parseInt(y);
         facing = facing.toUpperCase().trim();
         if (COMPASS[facing] === undefined){
-            console.log('facing position invalid');
+            this.logger.log('Facing Position Invalid');
             return;
         }
         if (!this.props.board.isValidPosition({x,y})){
-            console.log('invalid position');
+            this.logger.log('Invalid Position');
             return;
         }
         
@@ -74,7 +76,7 @@ class Robot {
             if (this.props.board.isValidPosition(pos)){
                 this.props.position = pos;
             }else{
-                console.log('invalid position',pos)
+                this.logger.log('Invalid Move');
             }
         }
     }
@@ -127,7 +129,7 @@ class Robot {
             //convert angle to cardinal directions
             const facing = Object.keys(COMPASS).find(f => COMPASS[f] === angle) || "UNKOWN";
             
-            console.log(`X: ${position.x}, Y:${position.y}, Facing: ${facing}` );
+            this.logger.log(`X: ${position.x}, Y:${position.y}, Facing: ${facing}` );
             return true;
         }
     }
@@ -144,7 +146,7 @@ class Robot {
      */
     noArgs(args){
         if (args){
-            console.log(`Unexpected Arguments: ${args} `);
+            this.logger.log(`Unexpected Arguments: ${args} `);
         }
         return !args;
     }
@@ -155,7 +157,7 @@ class Robot {
     isPlaced(){
         const {isPlaced} = this.props;
         if (!isPlaced){
-            console.log('Must place robot to table first');
+            this.logger.log('Must place robot on table first');
         }
         return isPlaced;
     }
@@ -163,9 +165,11 @@ class Robot {
     /**
      * robot factory
      */
-    static createRobot(board){
-        return new Robot(board);
+    static createRobot(logger, board){
+        return new Robot(logger, board);
     }
+
 }
 
 module.exports = Robot;
+module.exports.COMPASS = COMPASS;

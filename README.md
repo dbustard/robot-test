@@ -1,6 +1,6 @@
 # ROBOT TEST
 
-A simple robot that can move on a board
+A simple robot that can move on a board.
 board position 0,0 starts at SOUTH-WEST (bottom-left);
 
     +---+---+---+---+---+

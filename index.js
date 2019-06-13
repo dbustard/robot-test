@@ -21,6 +21,11 @@ const questions = [
 ];
 
 //prompt user for input
+Logger.log("-------------------------------------------")
+
+Logger.log("Welcome to Robo-command");
+Logger.log("Commands: PLACE, LEFT, RIGHT, MOVE, REPORT");
+Logger.log("-------------------------------------------")
 const prompt = () =>{
     inquirer.prompt(questions).then(
         ({command}) =>{

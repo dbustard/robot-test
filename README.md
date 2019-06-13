@@ -26,7 +26,7 @@ npm install
 
     to run:
     ```
-    node index
+    npm start
     ```
 
 ## Commands

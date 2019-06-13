@@ -26,12 +26,12 @@ class Robot {
      */
     place(args){
         if (!args){
-            this.logger.log('Missing Parameters');
+            this.logger.log('Missing Parameters, PLACE X,Y,F');
             return;
         }
         let [x,y,facing] = args.split(",");
         if (!x || !y || !facing){
-            this.logger.log('Invalid Parameters')
+            this.logger.log('Invalid Parameters, PLACE X,Y,F')
             return;
         }
         x = parseInt(x);

@@ -36,14 +36,14 @@ describe('Test Robot functionalities', ()=>{
             it('should not be able to place if no parameter is passed', ()=>{
                 robot.place();
                 assert.equal(robot.props.isPlaced, false);
-                sinon.assert.calledWithExactly(Logger.log,'Missing Parameters');
+                sinon.assert.calledWithExactly(Logger.log,'Missing Parameters, PLACE X,Y,F');
             });
     
             it('should be able to handle invalid parameters', ()=>{
                 robot.place('1,2');
     
                 assert.equal(robot.props.isPlaced, false);
-                sinon.assert.calledWithExactly(Logger.log,'Invalid Parameters');
+                sinon.assert.calledWithExactly(Logger.log,'Invalid Parameters, PLACE X,Y,F');
     
             });
     
